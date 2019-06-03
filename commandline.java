@@ -45,7 +45,7 @@ public class commandline {
 			while ((inputLine = in.readLine()) != null) {
 	    	content.append(inputLine);
 			}
-			System.out.println(contentType);
+			System.out.println(content);
 			in.close();
 
 			con.disconnect();
@@ -60,7 +60,6 @@ public class commandline {
     }
 
 	}
-
 
     private ArrayList < String > signedOffArrayList = new ArrayList < String > ();
 
