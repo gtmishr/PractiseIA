@@ -33,11 +33,11 @@ public class commandline {
 			Map<String, String> parameters = new HashMap<>();
 			parameters.put("param1", "val");
 
-			con.setDoOutput(true);
+			con.setDoInput(true);
 
 			con.setRequestProperty("Content-Type", "application/json");
 			String contentType = con.getHeaderField("Content-Type");
-			String contentTypeTwo = con.getInputStream("Content-Type");
+			//String contentTypeTwo = con.getInputStream("Content-Type");
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;
