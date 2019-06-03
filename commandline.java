@@ -25,6 +25,7 @@ public class commandline {
     System.out.print("Enter a Function: ");
     Scanner reader = new Scanner(System.in);
     String a = reader.nextLine();
+
 		try {
 			URL url = new URL("https://ibcsamazonec2.tk/students");
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -45,12 +46,12 @@ public class commandline {
 			while ((inputLine = in.readLine()) != null) {
 	    	content.append(inputLine);
 			}
-			System.out.println(content);
+			ParseJSON(content);
 			in.close();
 
 			con.disconnect();
 		} catch (Exception e){
-			System.out.print("HELLO ");
+			System.out.print("Connection is not working");
 			System.out.print(e);
 		}
 		if (a.equals("Reader") || a.equals("r")) {
@@ -58,7 +59,6 @@ public class commandline {
     } else if (a.equals("Delete") || a.equals("d")) {
         program.Delete();
     }
-
 	}
 
     private ArrayList < String > signedOffArrayList = new ArrayList < String > ();
@@ -80,13 +80,9 @@ public class commandline {
                 System.out.println(signedOffArrayList);
                 // Change to the name of the person once JSON file can be parsed
                 System.out.println(n + " has signed in.");
-
-
             } else {
-
-                //If already signed in, inform user and delete
+                // If already signed in, inform user and delete
                 System.out.println(n + " has already signed in.");
-
             }
             System.out.print("Enter a Function: ");
 
@@ -114,7 +110,6 @@ public class commandline {
 
             }
         }
-
         System.out.print("Enter a Function: ");
         String a = reader.nextLine();
 
@@ -124,4 +119,18 @@ public class commandline {
             Delete();
         }
     }
+
+		public static void ParseJSON(StringBuffer apiInput) {
+			// Delete first and last characters, and then convert the StringBuffer into a String, and split into array
+			apiInput = apiInput.deleteCharAt(0);
+			apiInput = apiInput.deleteCharAt(apiInput.length() - 1);
+			String parsedString = apiInput.toString();
+			String[] parsedArray = parsedString.split("},");
+
+			for (int i = 0; i <= parsedArray.length - 1; i++) {
+				System.out.println(parsedArray[i]);
+			}
+
+		}
+
 }
