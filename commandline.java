@@ -13,6 +13,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.lang.Object;
+import java.lang.StringBuilder;
 
 //import javax.net.ssl.HttpsURLConnection;
 
@@ -46,7 +48,7 @@ public class commandline {
 			while ((inputLine = in.readLine()) != null) {
 	    	content.append(inputLine);
 			}
-			ParseJSON(content);
+			program.ParseJSON(content);
 			in.close();
 
 			con.disconnect();
@@ -63,17 +65,41 @@ public class commandline {
 
     private ArrayList < String > signedOffArrayList = new ArrayList < String > ();
 
+
     public void Reader() {
 
+				int numberofthingos = 0;
         Scanner reader = new Scanner(System.in);
         System.out.print("Enter a number: ");
         String n = reader.nextLine();
+				System.out.println(namedArrayList);
 
-        if (n.length() == 10) {
+        if (n.length() <= 10) {
 
             //Checks to see if already marked off
             if (!signedOffArrayList.contains(n)) {
 
+								for(int z = 0; z < namedArrayList.size();z++){
+										if (namedArrayList.get(z).contains(n)){
+											System.out.println(z);
+											for(int h = 0; h<namedArrayList.get(z-2).length();h++){
+												StringBuilder g = new StringBuilder(namedArrayList.get(z-2));
+												String[] sas = namedArrayList.get(z-2).split("");
+												System.out.println(g);
+												while(numberofthingos<3){
+													if(sas[z].equals("\"")){
+														numberofthingos = numberofthingos + 1;
+													}
+													numberofthingos = numberofthingos + 1;
+													sas.remove(0);
+													System.out.println(sas);
+												}
+											}
+											System.out.println(namedArrayList.get(z+2));
+										} else {
+											System.out.println("Not"+z);
+										}
+								}
                 // Insert code for collecting data from JSON file with additional details
                 signedOffArrayList.add(n);
                 System.out.println(n);
@@ -120,16 +146,19 @@ public class commandline {
         }
     }
 
-		public static void ParseJSON(StringBuffer apiInput) {
+		private ArrayList < String > namedArrayList = new ArrayList < String > ();
+
+		public void ParseJSON(StringBuffer apiInput) {
 			// Delete first and last characters, and then convert the StringBuffer into a String, and split into array
 			apiInput = apiInput.deleteCharAt(0);
 			apiInput = apiInput.deleteCharAt(apiInput.length() - 1);
 			String parsedString = apiInput.toString();
-			String[] parsedArray = parsedString.split("},");
+			String[] parsedArray = parsedString.split(",");
 
 			for (int i = 0; i <= parsedArray.length - 1; i++) {
-				System.out.println(parsedArray[i]);
+				namedArrayList.add(parsedArray[i]);
 			}
+
 
 		}
 
