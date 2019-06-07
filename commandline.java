@@ -63,57 +63,55 @@ public class commandline {
     }
 	}
 
-    private ArrayList < String > signedOffArrayList = new ArrayList < String > ();
+    private ArrayList < String > signedOffArrayListNames = new ArrayList < String > ();
+		private ArrayList < String > signedOffArrayListRFID = new ArrayList < String > ();
 
 
     public void Reader() {
-
+				StringBuilder name = new StringBuilder();
 				int numberofthingos = 0;
         Scanner reader = new Scanner(System.in);
         System.out.print("Enter a number: ");
         String n = reader.nextLine();
-				System.out.println(namedArrayList);
 
         if (n.length() <= 10) {
 
             //Checks to see if already marked off
-            if (!signedOffArrayList.contains(n)) {
+            if (!signedOffArrayListRFID.contains(n)) {
 
 								for(int z = 0; z < namedArrayList.size();z++){
 										if (namedArrayList.get(z).contains(n)){
-											System.out.println(z);
-											for(int h = 0; h<namedArrayList.get(z-2).length();h++){
-												StringBuilder g = new StringBuilder(namedArrayList.get(z-2));
-												String[] sas = namedArrayList.get(z-2).split("");
-												System.out.println(g);
-												while(numberofthingos<3){
-													if(sas[z].equals("\"")){
-														numberofthingos = numberofthingos + 1;
-													}
-													numberofthingos = numberofthingos + 1;
-													sas.remove(0);
-													System.out.println(sas);
-												}
-											}
-											System.out.println(namedArrayList.get(z+2));
+
+												StringBuilder first = new StringBuilder(namedArrayList.get(z-2));
+												StringBuilder last = new StringBuilder(namedArrayList.get(z-1));
+
+												for(int Z=0;Z<first.length()-14;Z++){
+													name.append(Character.toString(first.charAt(13+Z)));
+												};
+												name.append(" ");
+												for(int Z=0;Z<first.length()-14;Z++){
+													name.append(Character.toString(last.charAt(12+Z)));
+												};
+
 										} else {
-											System.out.println("Not"+z);
+											//System.out.println("Not"+z);
 										}
 								}
                 // Insert code for collecting data from JSON file with additional details
-                signedOffArrayList.add(n);
-                System.out.println(n);
-                System.out.println(signedOffArrayList);
+                signedOffArrayListRFID.add(n);
+								signedOffArrayListNames.add(name.toString());
+                //System.out.println("Ziling Ouyang");
+                // System.out.println(signedOffArrayList);
                 // Change to the name of the person once JSON file can be parsed
-                System.out.println(n + " has signed in.");
+                System.out.println(name + " has signed in.");
             } else {
                 // If already signed in, inform user and delete
-                System.out.println(n + " has already signed in.");
+                System.out.println(name + " has already signed in.");
             }
             System.out.print("Enter a Function: ");
 
             String a = reader.nextLine();
-            if (a.equals("Reader")) {
+            if (a.equals("Reader") || a.equals("r") ) {
                 Reader();
             } else {
                 Delete();
@@ -127,19 +125,20 @@ public class commandline {
         System.out.print("Enter a number: ");
         String Deleted = reader.nextLine();
 
-        for (int i = 0; i < signedOffArrayList.size(); i++) {
-            if (signedOffArrayList.get(i).equals(Deleted)) {
+        for (int i = 0; i < signedOffArrayListRFID.size(); i++) {
+            if (signedOffArrayListRFID.get(i).equals(Deleted)) {
 
-                System.out.println(Deleted + "Has been Removed");
-                signedOffArrayList.remove(i);
-                System.out.println(signedOffArrayList);
+                System.out.println(signedOffArrayListNames.get(i) + " has signed out");
+                signedOffArrayListRFID.remove(i);
+								signedOffArrayListNames.remove(i);
+                //System.out.println(signedOffArrayList);
 
             }
         }
         System.out.print("Enter a Function: ");
         String a = reader.nextLine();
 
-        if (a.equals("Reader")) {
+        if (a.equals("Reader")|| a.equals("r")) {
             Reader();
         } else {
             Delete();
