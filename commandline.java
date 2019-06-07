@@ -113,7 +113,7 @@ public class commandline {
             String a = reader.nextLine();
             if (a.equals("Reader") || a.equals("r") ) {
                 Reader();
-            } else {
+            } else if(a.equals("Delete") || a.equals("d")){
                 Delete();
             }
         }
@@ -140,9 +140,9 @@ public class commandline {
 
         if (a.equals("Reader")|| a.equals("r")) {
             Reader();
-        } else {
-            Delete();
-        }
+        } else if(a.equals("Delete") || a.equals("d")){
+						Delete();
+				}
     }
 
 		private ArrayList < String > namedArrayList = new ArrayList < String > ();
