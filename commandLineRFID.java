@@ -1,5 +1,3 @@
-//package com.mkyong;
-
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.net.URLConnection;
@@ -16,17 +14,15 @@ import java.util.Map;
 import java.lang.Object;
 import java.lang.StringBuilder;
 
-//import javax.net.ssl.HttpsURLConnection;
-
-public class commandline {
+public class commandLineRFID {
 
 	public static void main(String[] args){
 
-    commandline program = new commandline();
+    commandLineRFID program = new commandLineRFID();
     System.out.println("Welcome!");
     System.out.print("Enter a Function: ");
     Scanner reader = new Scanner(System.in);
-    String a = reader.nextLine();
+    String nextLine = reader.nextLine();
 
 		try {
 			URL url = new URL("https://ibcsamazonec2.tk/students");
@@ -40,11 +36,11 @@ public class commandline {
 
 			con.setRequestProperty("Content-Type", "application/json");
 			String contentType = con.getHeaderField("Content-Type");
-			//String contentTypeTwo = con.getInputStream("Content-Type");
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;
 			StringBuffer content = new StringBuffer();
+
 			while ((inputLine = in.readLine()) != null) {
 	    	content.append(inputLine);
 			}
@@ -56,15 +52,17 @@ public class commandline {
 			System.out.print("Connection is not working");
 			System.out.print(e);
 		}
-		if (a.equals("Reader") || a.equals("r")) {
+
+		if (nextLine.equals("Reader") || nextLine.equals("r")) {
         program.Reader();
-    } else if (a.equals("Delete") || a.equals("d")) {
+    } else if (nextLine.equals("Delete") || nextLine.equals("d")) {
         program.Delete();
     }
+
 	}
 
-    private ArrayList < String > signedOffArrayListNames = new ArrayList < String > ();
-		private ArrayList < String > signedOffArrayListRFID = new ArrayList < String > ();
+    private ArrayList <String> signedOffArrayListNames = new ArrayList <String> ();
+		private ArrayList <String> signedOffArrayListRFID = new ArrayList <String> ();
 
 
     public void Reader() {
@@ -72,48 +70,46 @@ public class commandline {
 				int numberofthingos = 0;
         Scanner reader = new Scanner(System.in);
         System.out.print("Enter a number: ");
-        String n = reader.nextLine();
+        String nextLine = reader.nextLine();
 
-        if (n.length() <= 10) {
+        if (nextLine.length() <= 10) {
 
-            //Checks to see if already marked off
-            if (!signedOffArrayListRFID.contains(n)) {
+            // Check to see if already marked off
+            if (!signedOffArrayListRFID.contains(nextLine)) {
 
-								for(int z = 0; z < namedArrayList.size();z++){
-										if (namedArrayList.get(z).contains(n)){
+								for(int i = 0; i < namedArrayList.size();i++){
+										if (namedArrayList.get(i).contains(nextLine)){
 
-												StringBuilder first = new StringBuilder(namedArrayList.get(z-2));
-												StringBuilder last = new StringBuilder(namedArrayList.get(z-1));
+												StringBuilder first = new StringBuilder(namedArrayList.get(i - 2));
+												StringBuilder last = new StringBuilder(namedArrayList.get(i - 1));
 
-												for(int Z=0;Z<first.length()-14;Z++){
-													name.append(Character.toString(first.charAt(13+Z)));
+												for(int j = 0; j<first.length() - 14; j++){
+													name.append(Character.toString(first.charAt(13 + j)));
 												};
+
 												name.append(" ");
-												for(int Z=0;Z<first.length()-14;Z++){
-													name.append(Character.toString(last.charAt(12+Z)));
+												for(int j=0; j<first.length() - 14; j++){
+													name.append(Character.toString(last.charAt(12 + j)));
 												};
 
-										} else {
-											//System.out.println("Not"+z);
 										}
 								}
                 // Insert code for collecting data from JSON file with additional details
-                signedOffArrayListRFID.add(n);
+                signedOffArrayListRFID.add(nextLine);
 								signedOffArrayListNames.add(name.toString());
-                //System.out.println("Ziling Ouyang");
-                // System.out.println(signedOffArrayList);
                 // Change to the name of the person once JSON file can be parsed
                 System.out.println(name + " has signed in.");
             } else {
-                // If already signed in, inform user and delete
+            	// If already signed in, inform user and delete
                 System.out.println(name + " has already signed in.");
             }
+
             System.out.print("Enter a Function: ");
 
-            String a = reader.nextLine();
-            if (a.equals("Reader") || a.equals("r") ) {
+            String postNextLine = reader.nextLine();
+            if (postNextLine.equals("Reader") || postNextLine.equals("r") ) {
                 Reader();
-            } else if(a.equals("Delete") || a.equals("d")){
+            } else if(postNextLine.equals("Delete") || postNextLine.equals("d")){
                 Delete();
             }
         }
@@ -131,10 +127,9 @@ public class commandline {
                 System.out.println(signedOffArrayListNames.get(i) + " has signed out");
                 signedOffArrayListRFID.remove(i);
 								signedOffArrayListNames.remove(i);
-                //System.out.println(signedOffArrayList);
-
             }
         }
+
         System.out.print("Enter a Function: ");
         String a = reader.nextLine();
 
@@ -145,10 +140,10 @@ public class commandline {
 				}
     }
 
-		private ArrayList < String > namedArrayList = new ArrayList < String > ();
+		private ArrayList <String> namedArrayList = new ArrayList <String> ();
 
+		// Parse the JSON input (this is pretty dodgy so if my prospect employer sees this in like 10 years time please note that this was a stepping stone on our ways to learn how to code :) )
 		public void ParseJSON(StringBuffer apiInput) {
-			// Delete first and last characters, and then convert the StringBuffer into a String, and split into array
 			apiInput = apiInput.deleteCharAt(0);
 			apiInput = apiInput.deleteCharAt(apiInput.length() - 1);
 			String parsedString = apiInput.toString();
