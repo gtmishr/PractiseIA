@@ -19,10 +19,6 @@ public class commandLineRFID {
 	public static void main(String[] args){
 
     commandLineRFID program = new commandLineRFID();
-    System.out.println("Welcome!");
-    System.out.print("Enter a Function: ");
-    Scanner reader = new Scanner(System.in);
-    String nextLine = reader.nextLine();
 
 		try {
 			URL url = new URL("https://ibcsamazonec2.tk/students");
@@ -53,11 +49,18 @@ public class commandLineRFID {
 			System.out.print(e);
 		}
 
+		System.out.println("Welcome!");
+    System.out.print("Enter a Function: ");
+    Scanner reader = new Scanner(System.in);
+    String nextLine = reader.nextLine();
+
 		if (nextLine.equals("Reader") || nextLine.equals("r")) {
         program.Reader();
     } else if (nextLine.equals("Delete") || nextLine.equals("d")) {
         program.Delete();
-    }
+    } else if (nextLine.equals("Exit") || nextLine.equals("e")){
+			System.out.print("Leaving program...");
+		}
 
 	}
 
@@ -111,7 +114,9 @@ public class commandLineRFID {
                 Reader();
             } else if(postNextLine.equals("Delete") || postNextLine.equals("d")){
                 Delete();
-            }
+            } else if (nextLine.equals("Exit") || nextLine.equals("e")){
+							System.out.print("Leaving program...");
+						}
         }
     }
 
@@ -137,6 +142,8 @@ public class commandLineRFID {
             Reader();
         } else if(a.equals("Delete") || a.equals("d")){
 						Delete();
+				} else if (nextLine.equals("Exit") || nextLine.equals("e")){
+					System.out.print("Leaving program...");
 				}
     }
 
