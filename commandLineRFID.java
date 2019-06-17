@@ -54,11 +54,11 @@ public class commandLineRFID {
     Scanner reader = new Scanner(System.in);
     String nextLine = reader.nextLine();
 
-		if (nextLine.equals("Reader") || nextLine.equals("r")) {
-        program.Reader();
-    } else if (nextLine.equals("Delete") || nextLine.equals("d")) {
-        program.Delete();
-    } else if (nextLine.equals("Exit") || nextLine.equals("e")){
+		if (nextLine.toUpperCase().equals("READER") || nextLine.toLowerCase().equals("r") ) {
+				program.Reader();
+		} else if(nextLine.toUpperCase().equals("DELETE") || nextLine.toLowerCase().equals("d")){
+				program.Delete();
+		} else if(nextLine.toUpperCase().equals("EXIT") || nextLine.toLowerCase().equals("e")){
 			System.out.println("Leaving program...");
 		}
 
@@ -110,11 +110,11 @@ public class commandLineRFID {
             System.out.print("Enter a Function: ");
 
             String postNextLine = reader.nextLine();
-            if (postNextLine.equals("Reader") || postNextLine.equals("r") ) {
+            if (postNextLine.toUpperCase().equals("READER") || postNextLine.toLowerCase().equals("r") ) {
                 Reader();
-            } else if(postNextLine.equals("Delete") || postNextLine.equals("d")){
+            } else if(postNextLine.toUpperCase().equals("DELETE") || postNextLine.toLowerCase().equals("d")){
                 Delete();
-            } else if(nextLine.equals("Exit") || nextLine.equals("e")){
+            } else if(postNextLine.toUpperCase().equals("EXIT") || postNextLine.toLowerCase().equals("e")){
 							System.out.println("Leaving program...");
 						}
         }
@@ -138,11 +138,11 @@ public class commandLineRFID {
         System.out.print("Enter a Function: ");
         String a = reader.nextLine();
 
-        if (a.equals("Reader")|| a.equals("r")) {
-            Reader();
-        } else if(a.equals("Delete") || a.equals("d")){
+				if (a.toUpperCase().equals("READER") || a.toLowerCase().equals("r") ) {
+						Reader();
+				} else if(a.toUpperCase().equals("DELETE") || a.toLowerCase().equals("d")){
 						Delete();
-				} else if (a.equals("Exit") || a.equals("e")){
+				} else if(a.toUpperCase().equals("EXIT") || a.toLowerCase().equals("e")){
 					System.out.println("Leaving program...");
 				}
     }
