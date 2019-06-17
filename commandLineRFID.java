@@ -114,7 +114,7 @@ public class commandLineRFID {
                 Reader();
             } else if(postNextLine.equals("Delete") || postNextLine.equals("d")){
                 Delete();
-            } else if (nextLine.equals("Exit") || nextLine.equals("e")){
+            } else if(nextLine.equals("Exit") || nextLine.equals("e")){
 							System.out.print("Leaving program...");
 						}
         }
@@ -142,7 +142,7 @@ public class commandLineRFID {
             Reader();
         } else if(a.equals("Delete") || a.equals("d")){
 						Delete();
-				} else if (nextLine.equals("Exit") || nextLine.equals("e")){
+				} else if (a.equals("Exit") || a.equals("e")){
 					System.out.print("Leaving program...");
 				}
     }
