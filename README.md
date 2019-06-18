@@ -5,6 +5,6 @@ To develop our understanding of Java and some applications of it, we've decided,
 Alongside the fact that we're getting used to the format of an IB IA (and all the documentation required to complete one), this task is aimed to help us understand the language of Java better, as well as concepts in the IB HL Computer Science curriculum, such as object oriented programming, and the design processes required to develop a new software.
 
 To access the command line app, use the file...
-'''
+```bash
 commandLineRFID.java
-'''
+```
