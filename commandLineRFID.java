@@ -12,6 +12,20 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.lang.Object;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.net.URLConnection;
+import java.net.HttpURLConnection;
+import java.net.URLEncoder;
+import java.net.URL;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.lang.Object;
 import java.lang.StringBuilder;
 
 public class commandLineRFID {
@@ -56,16 +70,17 @@ public class commandLineRFID {
 	private ArrayList <String> signedOffArrayListRFID = new ArrayList <String> ();
 	private ArrayList <String> namedArrayList = new ArrayList <String> ();
 
-	public void askForUserInput() {
+	public static void askForUserInput() {
 		Scanner reader = new Scanner(System.in);
-
+		commandLineRFID program = new commandLineRFID();
+		System.out.println("Welcome");
 		System.out.print("Enter a Function: ");
 		String userInput = reader.nextLine();
 
 		if (userInput.toUpperCase().equals("READER") || userInput.toLowerCase().equals("r") ) {
-				Reader();
+				program.Reader();
 		} else if(userInput.toUpperCase().equals("DELETE") || userInput.toLowerCase().equals("d")){
-				Delete();
+				program.Delete();
 		} else if(userInput.toUpperCase().equals("EXIT") || userInput.toLowerCase().equals("e")){
 			System.out.println("Leaving program...");
 		}
