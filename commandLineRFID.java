@@ -49,24 +49,27 @@ public class commandLineRFID {
 			System.out.print(e);
 		}
 
-		System.out.println("Welcome!");
-    System.out.print("Enter a Function: ");
-    Scanner reader = new Scanner(System.in);
-    String nextLine = reader.nextLine();
-
-		if (nextLine.toUpperCase().equals("READER") || nextLine.toLowerCase().equals("r") ) {
-				program.Reader();
-		} else if(nextLine.toUpperCase().equals("DELETE") || nextLine.toLowerCase().equals("d")){
-				program.Delete();
-		} else if(nextLine.toUpperCase().equals("EXIT") || nextLine.toLowerCase().equals("e")){
-			System.out.println("Leaving program...");
-		}
-
+		askForUserInput();
 	}
 
-    private ArrayList <String> signedOffArrayListNames = new ArrayList <String> ();
-		private ArrayList <String> signedOffArrayListRFID = new ArrayList <String> ();
+	private ArrayList <String> signedOffArrayListNames = new ArrayList <String> ();
+	private ArrayList <String> signedOffArrayListRFID = new ArrayList <String> ();
+	private ArrayList <String> namedArrayList = new ArrayList <String> ();
 
+	public void askForUserInput() {
+		Scanner reader = new Scanner(System.in);
+
+		System.out.print("Enter a Function: ");
+		String userInput = reader.nextLine();
+
+		if (userInput.toUpperCase().equals("READER") || userInput.toLowerCase().equals("r") ) {
+				Reader();
+		} else if(userInput.toUpperCase().equals("DELETE") || userInput.toLowerCase().equals("d")){
+				Delete();
+		} else if(userInput.toUpperCase().equals("EXIT") || userInput.toLowerCase().equals("e")){
+			System.out.println("Leaving program...");
+		}
+	}
 
     public void Reader() {
 				StringBuilder name = new StringBuilder();
@@ -106,18 +109,8 @@ public class commandLineRFID {
             	// If already signed in, inform user and delete
                 System.out.println(name + " has already signed in.");
             }
-
-            System.out.print("Enter a Function: ");
-
-            String postNextLine = reader.nextLine();
-            if (postNextLine.toUpperCase().equals("READER") || postNextLine.toLowerCase().equals("r") ) {
-                Reader();
-            } else if(postNextLine.toUpperCase().equals("DELETE") || postNextLine.toLowerCase().equals("d")){
-                Delete();
-            } else if(postNextLine.toUpperCase().equals("EXIT") || postNextLine.toLowerCase().equals("e")){
-							System.out.println("Leaving program...");
-						}
         }
+				askForUserInput();
     }
 
     public void Delete() {
@@ -135,21 +128,9 @@ public class commandLineRFID {
             }
         }
 
-        System.out.print("Enter a Function: ");
-        String a = reader.nextLine();
-
-				if (a.toUpperCase().equals("READER") || a.toLowerCase().equals("r") ) {
-						Reader();
-				} else if(a.toUpperCase().equals("DELETE") || a.toLowerCase().equals("d")){
-						Delete();
-				} else if(a.toUpperCase().equals("EXIT") || a.toLowerCase().equals("e")){
-					System.out.println("Leaving program...");
-				}
+				askForUserInput();
     }
 
-		private ArrayList <String> namedArrayList = new ArrayList <String> ();
-
-		// Parse the JSON input (this is pretty dodgy so if my prospect employer sees this in like 10 years time please note that this was a stepping stone on our ways to learn how to code :) )
 		public void ParseJSON(StringBuffer apiInput) {
 			apiInput = apiInput.deleteCharAt(0);
 			apiInput = apiInput.deleteCharAt(apiInput.length() - 1);
